@@ -16,7 +16,7 @@ import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
 import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
 import Image from '@ckeditor/ckeditor5-image/src/image';
-import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
+// import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
 import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
 import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
@@ -46,7 +46,7 @@ ClassicEditor.builtinPlugins = [
 	EasyImage,
 	Heading,
 	Image,
-	ImageCaption,
+	// ImageCaption,
 	ImageStyle,
 	ImageToolbar,
 	ImageUpload,
@@ -59,13 +59,15 @@ ClassicEditor.builtinPlugins = [
 	TableToolbar,
 	// NEW
 	Alignment,
-	Underline
+	Underline,
+	PasteFromOffice
 ];
 
 // Editor configuration.
 ClassicEditor.defaultConfig = {
 	toolbar: {
 		items: [
+			'imageUpload',
 			'heading',
 			'alignment',
 			'bold',
@@ -83,10 +85,15 @@ ClassicEditor.defaultConfig = {
 	},
 	image: {
 		toolbar: [
-			'imageStyle:full',
-			'imageStyle:side',
+			'imageTextAlternative',
 			'|',
-			'imageTextAlternative'
+			'imageStyle:full', 'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight'
+		],
+		styles: [
+			'full',
+			'alignLeft',
+			'alignCenter',
+			'alignRight'
 		]
 	},
 	table: {
@@ -97,32 +104,41 @@ ClassicEditor.defaultConfig = {
 		]
 	},
 	heading: {
-		options: [
-			{ model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-			{
-				model: 'heading1',
-				view: 'h1',
-				title: 'Heading 1',
-				class: 'ck-heading_heading1',
-			},
-			{
-				model: 'heading2',
-				view: 'h2',
-				title: 'Heading 2',
-				class: 'ck-heading_heading2',
-			},
-			{
-				model: 'heading3',
-				view: 'h3',
-				title: 'Heading 3',
-				class: 'ck-heading_heading3',
-			},
-			{
-				model: 'heading4',
-				view: 'h4',
-				title: 'Heading 4',
-				class: 'ck-heading_heading4',
-			},
+		options: [ {
+			model: 'paragraph',
+			title: 'Paragraph',
+			class: 'ck-heading_paragraph'
+		},
+		{
+			model: 'heading1',
+			view: 'h1',
+			title: 'Heading 1',
+			class: 'ck-heading_heading1',
+		},
+		{
+			model: 'heading2',
+			view: 'h2',
+			title: 'Heading 2',
+			class: 'ck-heading_heading2',
+		},
+		{
+			model: 'heading3',
+			view: 'h3',
+			title: 'Heading 3',
+			class: 'ck-heading_heading3',
+		},
+		{
+			model: 'heading4',
+			view: 'h4',
+			title: 'Heading 4',
+			class: 'ck-heading_heading4',
+		},
+		{
+			model: 'heading5',
+			view: 'h5',
+			title: 'Heading 5',
+			class: 'ck-heading_heading5',
+		},
 		],
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
