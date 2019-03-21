@@ -67,7 +67,6 @@ ClassicEditor.builtinPlugins = [
 ClassicEditor.defaultConfig = {
 	toolbar: {
 		items: [
-			'imageUpload',
 			'heading',
 			'alignment',
 			'bold',
@@ -78,6 +77,7 @@ ClassicEditor.defaultConfig = {
 			'numberedList',
 			'blockQuote',
 			'insertTable',
+			'imageUpload',
 			'mediaEmbed',
 			'undo',
 			'redo'
@@ -86,8 +86,8 @@ ClassicEditor.defaultConfig = {
 	image: {
 		toolbar: [
 			'imageTextAlternative',
-			'|',
-			'imageStyle:full', 'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight'
+			// '|',
+			// 'imageStyle:full', 'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight'
 		],
 		styles: [
 			'full',
