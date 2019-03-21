@@ -1,3 +1,8 @@
+
+## Edit
+
+Added Alignment & Underline plugins 
+
 CKEditor 5 classic editor build
 ========================================
 
