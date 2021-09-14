@@ -1,6 +1,6 @@
 /**
- * @license Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
+ * @license Copyright (c) 2003-2021, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
 // The editor creator to use.
@@ -16,10 +16,11 @@ import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
 import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
 import Image from '@ckeditor/ckeditor5-image/src/image';
-// import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
+import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
 import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
 import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
+import Indent from '@ckeditor/ckeditor5-indent/src/indent';
 import Link from '@ckeditor/ckeditor5-link/src/link';
 import List from '@ckeditor/ckeditor5-list/src/list';
 import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed';
@@ -27,8 +28,9 @@ import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
+import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
+import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices';
 
-// NEW STUFFS
 import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
 
@@ -43,13 +45,15 @@ ClassicEditor.builtinPlugins = [
 	Italic,
 	BlockQuote,
 	CKFinder,
+	CloudServices,
 	EasyImage,
 	Heading,
 	Image,
-	// ImageCaption,
+	ImageCaption,
 	ImageStyle,
 	ImageToolbar,
 	ImageUpload,
+	Indent,
 	Link,
 	List,
 	MediaEmbed,
@@ -57,10 +61,10 @@ ClassicEditor.builtinPlugins = [
 	PasteFromOffice,
 	Table,
 	TableToolbar,
-	// NEW
+	TextTransformation,
+	// New stuff
 	Alignment,
-	Underline,
-	PasteFromOffice
+	Underline
 ];
 
 // Editor configuration.
@@ -68,32 +72,36 @@ ClassicEditor.defaultConfig = {
 	toolbar: {
 		items: [
 			'heading',
-			'alignment',
+			'|',
 			'bold',
 			'italic',
 			'underline',
-			'link',
+			'|',
+			'alignment',
 			'bulletedList',
 			'numberedList',
+			'|',
+			'outdent',
+			'indent',
+			'|',
+			'uploadImage',
+			'link',
 			'blockQuote',
-			'insertTable',
-			'imageUpload',
 			'mediaEmbed',
+			'insertTable',
+			'|',
 			'undo',
 			'redo'
 		]
 	},
 	image: {
 		toolbar: [
-			'imageTextAlternative',
-			// '|',
-			// 'imageStyle:full', 'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight'
-		],
-		styles: [
-			'full',
-			'alignLeft',
-			'alignCenter',
-			'alignRight'
+			'imageStyle:inline',
+			'imageStyle:block',
+			'imageStyle:side',
+			'|',
+			'toggleImageCaption',
+			'imageTextAlternative'
 		]
 	},
 	table: {
@@ -113,33 +121,33 @@ ClassicEditor.defaultConfig = {
 			model: 'heading1',
 			view: 'h1',
 			title: 'Heading 1',
-			class: 'ck-heading_heading1',
+			class: 'ck-heading_heading1'
 		},
 		{
 			model: 'heading2',
 			view: 'h2',
 			title: 'Heading 2',
-			class: 'ck-heading_heading2',
+			class: 'ck-heading_heading2'
 		},
 		{
 			model: 'heading3',
 			view: 'h3',
 			title: 'Heading 3',
-			class: 'ck-heading_heading3',
+			class: 'ck-heading_heading3'
 		},
 		{
 			model: 'heading4',
 			view: 'h4',
 			title: 'Heading 4',
-			class: 'ck-heading_heading4',
+			class: 'ck-heading_heading4'
 		},
 		{
 			model: 'heading5',
 			view: 'h5',
 			title: 'Heading 5',
-			class: 'ck-heading_heading5',
-		},
-		],
+			class: 'ck-heading_heading5'
+		}
+		]
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en'

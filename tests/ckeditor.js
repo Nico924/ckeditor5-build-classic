@@ -1,6 +1,6 @@
 /**
- * @license Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
+ * @license Copyright (c) 2003-2021, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
 /* globals document */
@@ -137,7 +137,7 @@ describe( 'ClassicEditor build', () => {
 		} );
 
 		it( 'image works', () => {
-			const data = '<figure class="image"><img src="./manual/sample.jpg"></figure>';
+			const data = '<figure class="image"><img src="/assets/sample.png"></figure>';
 
 			editor.setData( data );
 			expect( editor.getData() ).to.equal( data );
@@ -196,8 +196,23 @@ describe( 'ClassicEditor build', () => {
 				.then( newEditor => {
 					editor = newEditor;
 
-					expect( editor.ui.view.toolbar.items.length ).to.equal( 13 );
+					expect( editor.ui.view.toolbar.items.length ).to.equal( 17 );
 					expect( editor.ui.view.stickyPanel.viewportTopOffset ).to.equal( 42 );
+				} );
+		} );
+
+		it( 'allows removing built-in toolbar items', () => {
+			return ClassicEditor
+				.create( editorElement, {
+					toolbar: {
+						removeItems: [ 'italic' ]
+					}
+				} )
+				.then( newEditor => {
+					editor = newEditor;
+
+					expect( editor.ui.view.toolbar.items.length ).to.equal( 16 );
+					expect( editor.ui.view.toolbar.items.find( item => item.label === 'Italic' ) ).to.be.undefined;
 				} );
 		} );
 	} );
